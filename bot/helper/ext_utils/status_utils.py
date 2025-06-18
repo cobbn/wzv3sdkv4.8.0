@@ -21,22 +21,22 @@ SIZE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB"]
 
 
 class MirrorStatus:
-    STATUS_UPLOADING    = "🚀"
-    STATUS_DOWNLOADING  = "🛝"
-    STATUS_CLONING      = "♻️"
-    STATUS_QUEUEDL      = "Queued"
-    STATUS_QUEUEUP      = "Queued"
-    STATUS_PAUSED       = "⏸️"
-    STATUS_ARCHIVE      = "🔐"
-    STATUS_EXTRACT      = "🔓"
-    STATUS_SPLIT        = "✂️"
-    STATUS_CHECK        = "✔️"
-    STATUS_SEED         = "🐌"
-    STATUS_SAMVID       = "SamVid"
-    STATUS_CONVERT      = "Convert"
-    STATUS_FFMPEG       = "🛠️"
-    STATUS_YT           = "yt"
-    STATUS_METADATA     = "📝"
+    STATUS_UPLOAD = "Upload"
+    STATUS_DOWNLOAD = "Download"
+    STATUS_CLONE = "Clone"
+    STATUS_QUEUEDL = "QueueDl"
+    STATUS_QUEUEUP = "QueueUp"
+    STATUS_PAUSED = "Pause"
+    STATUS_ARCHIVE = "Archive"
+    STATUS_EXTRACT = "Extract"
+    STATUS_SPLIT = "Split"
+    STATUS_CHECK = "CheckUp"
+    STATUS_SEED = "Seed"
+    STATUS_SAMVID = "SamVid"
+    STATUS_CONVERT = "Convert"
+    STATUS_FFMPEG = "FFmpeg"
+    STATUS_YT = "YouTube"
+    STATUS_METADATA = "Metadata"
 
 
 class EngineStatus:
