@@ -197,7 +197,7 @@ def get_progress_bar_string(pct):
     cFull = int(p // 8)
     p_str = "⬢" * cFull
     p_str += "⬡" * (12 - cFull)
-    return f"[{p_str}]"
+    return f"{p_str}"
 
 
 async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=1):
@@ -230,7 +230,7 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
         msg += f"<b>{escape(f'{task.name()}')}</b>"
         elapsed = time() - task.listener.message.date.timestamp()
 
-        msg += f"\n\n<b>Task By {task.listener.message.from_user.mention(style='html')} </b> ( #ID{task.listener.message.from_user.id} )"
+        msg += f"\n\n<b>{task.listener.message.from_user.mention(style='html')} </b> ( #ID{task.listener.message.from_user.id} )"
 
         if (
             tstatus not in [MirrorStatus.STATUS_SEED, MirrorStatus.STATUS_QUEUEUP]
@@ -247,13 +247,13 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
                 count = ""
             msg += f"\n<b>{tstatus} : {task.processed_bytes()}{subsize} of {task.size()}</b>"
             if count:
-                msg += f"\n<b>Count:</b> : <b>{count}</b>"
-            msg += f"\n<b>Time</b> : <i>{task.eta()} of {get_readable_time(elapsed + get_raw_time(task.eta()))} ( {get_readable_time(elapsed)} )</i>"
+                msg += f"\n<b>Count:</b> <b>{count}</b>"
+            msg += f"\n<b>Time</b> : {task.eta()} of {get_readable_time(elapsed + get_raw_time(task.eta()))} ( {get_readable_time(elapsed)} )"
             if tstatus == MirrorStatus.STATUS_DOWNLOAD and (
                 task.listener.is_torrent or task.listener.is_qbit
             ):
                 try:
-                    msg += f"\n<b>{task.seeders_num()}/{task.leechers_num()} | {task.listener.mode[0]}:{task.listener.mode[1]}</b>"
+                    msg += f"\n<b>{task.seeders_num()}/{task.leechers_num()} | {task.listener.mode[0]} ‖ {task.listener.mode[1]}</b>"
                 except Exception:
                     pass
             # TODO: Add Connected Peers
@@ -290,6 +290,6 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
                 buttons.data_button(label, f"status {sid} st {status_value}")
     buttons.data_button("♻️ Refresh", f"status {sid} ref", position="header")
     button = buttons.build_menu(8)
-    msg += f"\n<b>CPU</b> : {cpu_percent()}% | <b>F</b> : {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)} [{round(100 - disk_usage(DOWNLOAD_DIR).percent, 1)}%]"
+    msg += f"\n<b>CPU</b> : {cpu_percent()}% | <b>F</b> : {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
     msg += f"\n<b>RAM</b> : {virtual_memory().percent}% | <b>UP</b> : {get_readable_time(time() - bot_start_time)}"
     return msg, button
